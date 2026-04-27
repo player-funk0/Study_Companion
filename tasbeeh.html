@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رفيق المذاكرة | صفحة التسبيح</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape shape-1" aria-hidden="true"></div>
+    <div class="bg-shape shape-2" aria-hidden="true"></div>
+
+    <header class="app-header reveal">
+      <nav class="top-nav" aria-label="التنقل">
+        <a href="index.html">الرئيسية</a>
+        <a href="study.html">المذاكرة</a>
+        <a href="tasbeeh.html" class="active">التسبيح</a>
+        <a href="adhkar.html">الأذكار</a>
+      </nav>
+
+      <p class="eyebrow">صفحة التسبيح</p>
+      <h1>عداد التسبيح</h1>
+      <p class="subtitle">اختَر الذكر، حدّد الهدف، وسبّح مع عداد واضح وسجل تلقائي.</p>
+    </header>
+
+    <main class="tasbeeh-layout">
+      <section class="card reveal">
+        <div class="section-title">
+          <h2>إعداد الذكر</h2>
+        </div>
+
+        <div class="tasbeeh-form">
+          <label>
+            صيغة الذكر
+            <select id="tasbeehPreset">
+              <option value="سبحان الله">سبحان الله</option>
+              <option value="الحمد لله">الحمد لله</option>
+              <option value="الله أكبر">الله أكبر</option>
+              <option value="لا إله إلا الله">لا إله إلا الله</option>
+              <option value="سبحان الله وبحمده">سبحان الله وبحمده</option>
+              <option value="لا حول ولا قوة إلا بالله">لا حول ولا قوة إلا بالله</option>
+              <option value="custom">ذكر مخصص</option>
+            </select>
+          </label>
+
+          <label id="customDhikrWrap" class="hidden">
+            الذكر المخصص
+            <input id="customDhikrInput" type="text" maxlength="80" placeholder="اكتب الذكر هنا" />
+          </label>
+
+          <label>
+            الهدف
+            <input id="tasbeehTarget" type="number" min="1" max="100000" value="100" />
+          </label>
+        </div>
+      </section>
+
+      <section class="card reveal delay-1">
+        <div class="section-title">
+          <h2>العداد</h2>
+        </div>
+
+        <p id="tasbeehCurrentDhikr" class="tasbeeh-current">سبحان الله</p>
+        <p id="tasbeehCount" class="tasbeeh-count latin">0</p>
+
+        <div class="tasbeeh-progress-wrap" aria-label="نسبة الإنجاز">
+          <div class="tasbeeh-progress-track">
+            <div id="tasbeehProgressBar" class="tasbeeh-progress-bar"></div>
+          </div>
+          <p id="tasbeehProgressText" class="tasbeeh-progress-text">0%</p>
+        </div>
+
+        <div class="tasbeeh-buttons">
+          <button type="button" class="btn primary" id="incrementBtn">+1</button>
+          <button type="button" class="btn secondary" id="incrementTenBtn">+10</button>
+          <button type="button" class="btn ghost" id="decrementBtn">-1</button>
+          <button type="button" class="btn ghost" id="resetTasbeehBtn">تصفير</button>
+        </div>
+
+        <p id="tasbeehMessage" class="msg hidden" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card reveal delay-2">
+        <div class="section-title">
+          <h2>سجل اليوم</h2>
+        </div>
+        <p id="tasbeehTotalToday" class="summary hidden"></p>
+        <ul id="tasbeehSessionsList" class="tasbeeh-sessions"></ul>
+        <p id="tasbeehSessionsEmpty" class="empty">لا توجد جلسات محفوظة حتى الآن.</p>
+      </section>
+    </main>
+
+    <script src="theme.js"></script>
+    <script src="tasbeeh.js"></script>
+  </body>
+</html>

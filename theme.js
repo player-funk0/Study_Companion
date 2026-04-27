@@ -1,0 +1,2 @@
+/* Ramadan theme manager removed
+   This file intentionally left blank. */

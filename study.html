@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رفيق المذاكرة | صفحة المذاكرة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape shape-1" aria-hidden="true"></div>
+    <div class="bg-shape shape-2" aria-hidden="true"></div>
+
+    <header class="app-header reveal">
+      <nav class="top-nav" aria-label="التنقل">
+        <a href="index.html">الرئيسية</a>
+        <a href="study.html" class="active">المذاكرة</a>
+        <a href="tasbeeh.html">التسبيح</a>
+        <a href="adhkar.html">الأذكار</a>
+      </nav>
+
+      <p class="eyebrow">صفحة تنظيم المذاكرة</p>
+      <h1>خطة مذاكرة ذكية</h1>
+      <p class="subtitle">
+        أضف موادك، ولّد جدولًا تلقائيًا، واستخدم المؤقتات لإدارة وقت المذاكرة بشكل يومي.
+      </p>
+    </header>
+
+    <main class="layout">
+      <section class="card reveal">
+        <div class="section-title">
+          <h2>إضافة مادة</h2>
+        </div>
+        <form id="subjectForm" class="form-grid">
+          <label>
+            اسم المادة
+            <input id="subjectName" name="subjectName" type="text" maxlength="40" required />
+          </label>
+
+          <label>
+            ساعات المذاكرة أسبوعيًا
+            <input
+              id="weeklyHours"
+              name="weeklyHours"
+              type="number"
+              min="1"
+              max="40"
+              step="0.5"
+              value="4"
+              required
+            />
+          </label>
+
+          <label>
+            درجة الصعوبة
+            <select id="difficulty" name="difficulty">
+              <option value="1">1 - سهلة</option>
+              <option value="2">2</option>
+              <option value="3" selected>3 - متوسطة</option>
+              <option value="4">4</option>
+              <option value="5">5 - صعبة</option>
+            </select>
+          </label>
+
+          <button type="submit" class="btn primary">إضافة المادة</button>
+        </form>
+
+        <p id="subjectMessage" class="msg hidden" role="status" aria-live="polite"></p>
+
+        <ul id="subjectsList" class="subject-list"></ul>
+        <p id="subjectsEmpty" class="empty">لا توجد مواد حتى الآن.</p>
+      </section>
+
+      <section class="card reveal delay-1">
+        <div class="section-title">
+          <h2>إعداد الجدول</h2>
+        </div>
+        <form id="scheduleForm" class="form-grid">
+          <label>
+            تاريخ البداية
+            <input id="startDate" name="startDate" type="date" required />
+          </label>
+
+          <label>
+            عدد أيام المذاكرة
+            <input id="daysPerWeek" name="daysPerWeek" type="number" min="1" max="7" value="6" required />
+          </label>
+
+          <label>
+            وقت بداية افتراضي
+            <input id="dailyStart" name="dailyStart" type="time" value="16:00" required />
+          </label>
+
+          <label>
+            فترة المذاكرة
+            <select id="studyWindow" name="studyWindow">
+              <option value="before_iftar">قبل الفطار</option>
+              <option value="after_iftar" selected>بعد الفطار</option>
+            </select>
+          </label>
+
+          <label>
+            ساعات متاحة يوميًا
+            <input id="dailyHours" name="dailyHours" type="number" min="1" max="12" value="3" required />
+          </label>
+
+          <label>
+            مدة الجلسة (بالدقائق)
+            <input
+              id="sessionMinutes"
+              name="sessionMinutes"
+              type="number"
+              min="20"
+              max="180"
+              step="5"
+              value="50"
+              required
+            />
+          </label>
+
+          <label>
+            وقت راحة بين الجلسات
+            <input
+              id="breakMinutes"
+              name="breakMinutes"
+              type="number"
+              min="0"
+              max="60"
+              step="5"
+              value="10"
+              required
+            />
+          </label>
+
+          <button type="submit" class="btn secondary">توليد جدول المذاكرة</button>
+        </form>
+
+        <p id="scheduleMessage" class="msg hidden" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card reveal delay-2" id="prayerCard">
+        <div class="section-title">
+          <h2>مواقيت الصلاة - محافظة الجيزة</h2>
+        </div>
+        <p id="prayerDate" class="subject-meta"></p>
+        <ul id="prayerList" class="prayer-list"></ul>
+        <p id="prayerStatus" class="empty">جاري تحميل مواقيت اليوم...</p>
+        <div class="prayer-actions">
+          <label class="toggle-row">
+            <input id="prayerAlertEnabled" type="checkbox" checked />
+            تنبيه وقت الصلاة
+          </label>
+          <button type="button" class="btn ghost" id="refreshPrayerBtn">تحديث المواقيت</button>
+        </div>
+      </section>
+
+      <section class="card reveal delay-3" id="stopwatchCard">
+        <div class="section-title">
+          <h2><span class="latin">Stopwatch</span></h2>
+        </div>
+        <p class="stopwatch-display latin" id="stopwatchDisplay">00:00:00</p>
+        <div class="stopwatch-actions">
+          <button class="btn primary" id="startPauseBtn" type="button">ابدأ</button>
+          <button class="btn ghost" id="resetBtn" type="button">تصفير</button>
+        </div>
+
+        <div class="timer-divider" aria-hidden="true"></div>
+
+        <div class="section-title">
+          <h2><span class="latin">Countdown</span></h2>
+        </div>
+        <div class="countdown-controls">
+          <label class="countdown-label" for="countdownHours">
+            مدة العد التنازلي
+            <select id="countdownHours" name="countdownHours">
+              <option value="1">1 ساعة</option>
+              <option value="2">2 ساعة</option>
+              <option value="3">3 ساعات</option>
+              <option value="4">4 ساعات</option>
+              <option value="5">5 ساعات</option>
+            </select>
+          </label>
+
+          <p class="countdown-display latin" id="countdownDisplay">01:00:00</p>
+          <div class="countdown-actions">
+            <button class="btn secondary" id="countdownStartPauseBtn" type="button">ابدأ العد</button>
+            <button class="btn ghost" id="countdownResetBtn" type="button">تصفير</button>
+          </div>
+          <p id="countdownStatus" class="countdown-status hidden"></p>
+        </div>
+      </section>
+
+      <section class="card wide reveal delay-4">
+        <div class="section-title">
+          <h2>جدول المذاكرة</h2>
+        </div>
+        <p id="scheduleSummary" class="summary hidden"></p>
+        <div id="scheduleOutput" class="schedule-grid"></div>
+        <p id="scheduleEmpty" class="empty">أضف المواد ثم اضغط "توليد جدول المذاكرة".</p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>رفيق المذاكرة | الأذكار الصحيحة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape shape-1" aria-hidden="true"></div>
+    <div class="bg-shape shape-2" aria-hidden="true"></div>
+
+    <header class="app-header reveal">
+      <nav class="top-nav" aria-label="التنقل">
+        <a href="index.html">الرئيسية</a>
+        <a href="study.html">المذاكرة</a>
+        <a href="tasbeeh.html">التسبيح</a>
+        <a href="adhkar.html" class="active">الأذكار</a>
+      </nav>
+
+      <p class="eyebrow">أذكار صحيحة موثقة</p>
+      <h1>الأذكار مع السند</h1>
+      <p class="subtitle">كل ذكر في هذه الصفحة مرفق بدرجته، والسند المختصر، ومصدر الحديث.</p>
+    </header>
+
+    <main class="adhkar-layout">
+      <section class="card reveal">
+        <div class="section-title">
+          <h2>بحث وتصفية</h2>
+        </div>
+        <div class="adhkar-controls">
+          <label>
+            ابحث في الأذكار
+            <input id="adhkarSearch" type="text" placeholder="مثال: الاستغفار، النوم، الصباح" />
+          </label>
+          <label>
+            التصنيف
+            <select id="adhkarCategory">
+              <option value="all">الكل</option>
+              <option value="daily">يومي</option>
+              <option value="morning">صباح</option>
+              <option value="evening">مساء</option>
+              <option value="sleep">قبل النوم</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card wide reveal delay-1">
+        <div class="section-title">
+          <h2>قائمة الأذكار</h2>
+        </div>
+        <div id="adhkarList" class="adhkar-list"></div>
+        <p id="adhkarEmpty" class="empty hidden">لا توجد نتائج مطابقة للبحث الحالي.</p>
+      </section>
+    </main>
+
+    <script src="theme.js"></script>
+    <script src="adhkar.js"></script>
+  </body>
+</html>
